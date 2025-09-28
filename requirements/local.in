@@ -1,0 +1,17 @@
+-r base.in
+
+# Lint
+flake8==7.3.0
+isort==6.0.1
+black==25.9.0
+bandit==1.8.6
+
+# Test
+pytest-env==1.1.5
+pytest==8.4.2
+Faker==37.8.0
+pytest-cov==7.0.0
+aioresponses==0.7.8
+moto==5.1.13
+freezegun==1.5.5
+pytest-asyncio==1.2.0

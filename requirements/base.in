@@ -1,0 +1,23 @@
+# Default dependencies
+aiohttp[speedups]==3.12.15
+uvicorn[standard]==0.37.0
+gunicorn==23.0.0
+Werkzeug==3.1.3
+mangum==0.19.0
+boto3==1.40.40
+httptools==0.6.4
+wheel==0.45.1
+build==1.3.0
+pydantic==2.11.9
+pydantic-core==2.33.2
+pydantic-settings==2.11.0
+structlog==25.4.0
+fastapi==0.117.1
+httpx==0.28.1
+diskcache==5.6.3
+PyJWT==2.10.1
+cryptography==46.0.1
+deepmerge==2.0
+redis==6.4.0
+requests==2.32.5
+tenacity==9.1.2

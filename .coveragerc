@@ -1,0 +1,11 @@
+[run]
+omit =
+    */tests/*
+    */config/*
+    app/utils/*
+
+[report]
+exclude_lines = 
+    pragma: no cover
+    if TYPE_CHECKING:
+    if health_check_only:
