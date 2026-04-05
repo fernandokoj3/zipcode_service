@@ -8,7 +8,7 @@ from app.domain.exceptions import NotFoundException, UnprocessableEntity
 from app.use_case.viacep.viacep_retrieve_address import (
     ViacepRetrieveAddressAccount as Subject,
 )
-from app.utils.settings import DEFAULT_VIACEP_BASE_URL
+from app.utils.settings import settings
 
 my_faker = Faker("pt_BR")
 
@@ -58,7 +58,7 @@ async def test_given_valid_zipcode_viacep_retrieve_address_should_return_ok(
     create_response, aiohttp_mock
 ):
     url = "{base_url}/ws/{zipcode}/json/".format(
-        base_url=DEFAULT_VIACEP_BASE_URL, zipcode="01001-000"
+        base_url=settings.viacep_base_url, zipcode="01001-000"
     )
 
     aiohttp_mock.get(url=url, status=200, payload=create_response)
@@ -87,7 +87,7 @@ async def test_given_valid_zipcode_viacep_retrieve_address_should_return_with_sa
     aiohttp_mock,
 ):
     url = "{base_url}/ws/{zipcode}/json/".format(
-        base_url=DEFAULT_VIACEP_BASE_URL, zipcode="01472-900"
+        base_url=settings.viacep_base_url, zipcode="01472-900"
     )
 
     aiohttp_mock.get(url=url, status=200, payload=create_response)
@@ -103,7 +103,7 @@ async def test_given_invalid_zipcode_viacep_retrieve_address_should_return_not_f
     aiohttp_mock,
 ):
     url = "{base_url}/ws/{zipcode}/json/".format(
-        base_url=DEFAULT_VIACEP_BASE_URL, zipcode="01001-999"
+        base_url=settings.viacep_base_url, zipcode="01001-999"
     )
 
     aiohttp_mock.get(url=url, status=200, payload={"erro": True})
@@ -119,7 +119,7 @@ async def test_given_invalid_zipcode_viacep_retrieve_address_should_return_error
     aiohttp_mock,
 ):
     url = "{base_url}/ws/{zipcode}/json/".format(
-        base_url=DEFAULT_VIACEP_BASE_URL, zipcode="01001-999"
+        base_url=settings.viacep_base_url, zipcode="01001-999"
     )
 
     aiohttp_mock.get(url=url, status=500, payload=None)

@@ -21,3 +21,4 @@ deepmerge==2.0
 redis==6.4.0
 requests==2.32.5
 tenacity==9.1.2
+gunicorn==23.0.0

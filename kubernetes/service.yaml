@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: zipcode-service-service
+spec:
+  selector:
+    app: zipcode-service
+  type: LoadBalancer
+  ports:
+    - port: 5000
+      targetPort: 5000
+      name: http
+    - port: 443
+      targetPort: 443
+      name: https

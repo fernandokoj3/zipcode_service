@@ -1,0 +1,92 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: zipcode-service-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: zipcode-service
+  template:
+    metadata:
+      labels:
+        app: zipcode-service
+    spec:
+      containers:
+        - name: zipcode-service
+          image: koj3/zipcode-service:1.0.0
+          command:
+            - "gunicorn"
+          args:
+            - "app.main:create_fastapi_application"
+            - "-k"
+            - "uvicorn.workers.UvicornWorker"
+            - "--bind"
+            - "0.0.0.0:5000"
+            - "--workers"
+            - "2"
+            - "--timeout"
+            - "60"
+          resources:
+            requests:
+              cpu: "200m"
+              memory: "256Mi"
+            limits:
+              cpu: "500m"
+              memory: "512Mi"
+          readinessProbe:
+            initialDelaySeconds: 30
+            periodSeconds: 5
+            timeoutSeconds: 1
+            failureThreshold: 3
+            httpGet:
+              path: /
+              port: 5000
+              # Default
+              scheme: HTTP
+              httpHeaders:
+                # Example for authorization
+                - name: authorization
+                  value: ""
+
+          livenessProbe:
+            # Init service wait for start
+            initialDelaySeconds: 30
+            # Times that will make tests
+            periodSeconds: 5
+            # Number of seconds after which the probe times out
+            timeoutSeconds: 1
+            # Minimum consecutive failures for the probe to be considered failed after having succeeded
+            failureThreshold: 1
+            httpGet:
+              path: /
+              port: 5000
+              # Default
+              scheme: HTTP
+              httpHeaders:
+                # Example for authorization
+                - name: authorization
+                  value: ""
+
+          startupProbe:
+            httpGet:
+              path: /
+              port: 5000
+              # Default
+              scheme: HTTP
+              httpHeaders:
+                # Example for authorization
+                - name: authorization
+                  value: ""
+            periodSeconds: 30
+            failureThreshold: 10
+          ports:
+            - containerPort: 5000
+              name: http
+            - containerPort: 433
+              name: https
+          imagePullPolicy: Always
+          envFrom:
+            - configMapRef:
+                name: zipcode-service-configmap
+

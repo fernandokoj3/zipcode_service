@@ -6,14 +6,14 @@ from app.schema.internal.viacep.response.viacep_response import (
     ViaCepResponse,
 )
 from app.service.service_api import Method, async_fetch_url
-from app.utils.settings import DEFAULT_VIACEP_BASE_URL
+from app.utils.settings import settings
 
 
 async def retrieve_address(
     session: ClientSession, *, zipcode: str
 ) -> ViaCepResponse:
     url = "{base_url}/ws/{zipcode}/json/".format(
-        base_url=DEFAULT_VIACEP_BASE_URL, zipcode=zipcode
+        base_url=settings.viacep_base_url, zipcode=zipcode
     )
 
     response = await async_fetch_url(
