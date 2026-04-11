@@ -27,7 +27,7 @@ class RedisConfig(BaseModel):
 
 
 class _Settings(BaseSettings):
-    version: str = Field("3.0.0")
+    version: str = Field("4.0.0")
     base_url_v1: str = Field(VERSION_1)
     base_url_v2: str = Field(VERSION_2)
     redis: Optional[RedisConfig] = Field(None)
