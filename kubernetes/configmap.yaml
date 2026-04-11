@@ -5,3 +5,4 @@ metadata:
 data:
   APP_VIACEP_BASE_URL: https://viacep.com.br
   APP_ENV: PRODUCTION
+  APP_VERSION: 5.0.0
