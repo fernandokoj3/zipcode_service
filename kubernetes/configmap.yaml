@@ -2,11 +2,6 @@ kind: ConfigMap
 apiVersion: v1
 metadata:
   name: zipcode-service-configmap
-spec:
-  template:
-    metadata:
-      annotations:
-        configmap-hash: "v1"
 data:
   APP_VIACEP_BASE_URL: https://viacep.com.br
   APP_ENV: PRODUCTION

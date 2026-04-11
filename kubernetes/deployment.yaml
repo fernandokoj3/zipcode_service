@@ -11,6 +11,9 @@ spec:
     metadata:
       labels:
         app: zipcode-service
+      annotations:
+        configmap-hash: "v1"
+
     spec:
       containers:
         - name: zipcode-service
