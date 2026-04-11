@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: zipcode-service
-          image: koj3/zipcode-service:latest
+          image: koj3/zipcode-service:3.0.0
           command:
             - "gunicorn"
           args:
