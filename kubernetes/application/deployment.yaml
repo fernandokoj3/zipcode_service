@@ -12,7 +12,7 @@ spec:
       labels:
         app: zipcode-service
       annotations:
-        configmap-hash: "v2"
+        configmap-hash: "v5"
 
     spec:
       containers:
