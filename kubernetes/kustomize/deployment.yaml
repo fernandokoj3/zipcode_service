@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-color
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: web-color
+  template:
+    metadata:
+      labels:
+        app: web-color
+    spec:
+      containers:
+        - name: web-color
+          image: koj3/web-color:green
+          ports:
+            - containerPort: 5000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: web-color
+spec:
+  selector:
+    app: web-color
+  ports:
+    - protocol: TCP
+      port: 9090
+      targetPort: 5000
+  type: ClusterIP
